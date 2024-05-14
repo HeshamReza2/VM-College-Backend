@@ -15,8 +15,11 @@ exports.getAllSubjects = async(req, res) => {
 exports.saveSubject = async(req, res) => {
     const data = new Subjects({
         subject: req.body.subject,
+        courseType: req.body.courseType,
+        amount: req.body.amount,
         capacity: req.body.capacity,
-        fees: req.body.fees
+        semester: req.body.semester,
+        admission_status: req.body.admission_status
     })
     try {
         const saveSubject = await data.save()
@@ -35,12 +38,39 @@ exports.updateSubject = async(req, res) => {
             {
                 $set: {
                     subject: req.body.subject,
+                    courseType: req.body.courseType,
+                    amount: req.body.amount,
                     capacity: req.body.capacity,
-                    fees: req.body.fees
+                    semester: req.body.semester,
+                    admission_status: req.body.admission_status
                 }
             }
         )
         res.json(data)
+    }
+    catch (err){
+        message: err
+    }
+}
+
+//update admission status of all
+exports.updateAllSubject = async(req, res) => {
+    const data = {
+        type: req.body.type,
+        courseType: req.body.courseType,
+        semester: req.body.semester,
+        status: req.body.status
+    }
+    try {
+        const filter = { semester: data.semester, courseType: data.courseType }
+
+        if(type == 'Admission'){
+            const result = await Subjects.updateMany(filter, {
+                $set: { admission_status: 'true' }
+            })
+            res.json(result)
+        }
+        else res.json({data: 'Failed'})
     }
     catch (err){
         message: err
