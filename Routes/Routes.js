@@ -1,13 +1,15 @@
 const express = require('express')
 const router = express.Router()
 
-const { getAllSubjects, saveSubject, updateSubject, updateAllSubject, deleteSubject } = require('../Controller/SubjectsControll')
+const { getAllSubjects, saveSubject, updateSubject, updateAllSubjects, deleteSubject } = require('../Controller/SubjectsControll')
 
 const { getAllStudents, checkSingleStudent, findStudent, getSingleStudent, addStudent, updateStudent, deleteStudent } = require('../Controller/StudentsControl')
 
 const { getAllAdmin, searchAdmin, loginAdmin, signupAdmin, updateAdmin, deleteAdmin } = require('../Controller/AdminControl')
 
 const { getAllOpenclose, saveOpenclose, updateOpenclose, deleteOpenclose } = require('../Controller/OpencloseControl')
+
+const { getAllQuestions, addQuestion, updateQuestion, deleteQuestion } = require('../Controller/QuestionsControl')
 
 
 
@@ -25,7 +27,7 @@ router.delete('/delete-student/:postId', deleteStudent) // delete a students dat
 router.get('/subjects', getAllSubjects) //get all the subjects list
 router.post('/save-subject', saveSubject) //save a subject on database
 router.patch('/update-subject/:postId', updateSubject) //update a subject on database
-router.patch('/update-all-subject', updateSubject) //update all subject on database
+router.patch('/update-all-subjects', updateAllSubjects) //update all subject on database
 router.delete('/delete-subject/:postId', deleteSubject) //delete a subject from database
 
 
@@ -44,6 +46,13 @@ router.get('/openclose', getAllOpenclose) //get all openclose list
 router.post('/save-openclose', saveOpenclose) //save an openclose on database
 router.patch('/update-openclose/:postId', updateOpenclose) //update an openclose on database
 router.delete('/delete-openclose/:postId', deleteOpenclose) //delete an openclose from database
+
+
+//question routes
+router.get('/questions', getAllQuestions) //get all questions list
+router.post('/save-question', addQuestion) //save a question on database
+router.patch('/update-question/:postId', updateQuestion) //update a question on database
+router.delete('/delete-question/:postId', deleteQuestion) //delete a question from database
 
 
 

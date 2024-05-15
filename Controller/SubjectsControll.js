@@ -54,7 +54,7 @@ exports.updateSubject = async(req, res) => {
 }
 
 //update admission status of all
-exports.updateAllSubject = async(req, res) => {
+exports.updateAllSubjects = async(req, res) => {
     const data = {
         type: req.body.type,
         courseType: req.body.courseType,
@@ -64,9 +64,9 @@ exports.updateAllSubject = async(req, res) => {
     try {
         const filter = { semester: data.semester, courseType: data.courseType }
 
-        if(type == 'Admission'){
+        if(data.type == 'Admission'){
             const result = await Subjects.updateMany(filter, {
-                $set: { admission_status: 'true' }
+                $set: { admission_status: data.status }
             })
             res.json(result)
         }
