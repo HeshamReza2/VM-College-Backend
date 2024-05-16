@@ -65,11 +65,8 @@ exports.getSingleStudent = async(req, res) => {
 
 //get a single student data using registration number
 exports.getSingleRegStudent = async(req, res) => {
-    const data = {
-        registration_no: req.body.registration_no
-    }
     try {
-        const getSingleRegStudent = await Students.find(data)
+        const getSingleRegStudent = await Students.findOne({registration_no: req.params.registration_no})
         res.json(getSingleRegStudent)
     }
     catch (err){
