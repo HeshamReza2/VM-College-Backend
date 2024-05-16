@@ -62,6 +62,21 @@ exports.getSingleStudent = async(req, res) => {
     }
 }
 
+
+//get a single student data using registration number
+exports.getSingleRegStudent = async(req, res) => {
+    const data = {
+        registration_no: req.body.registration_no
+    }
+    try {
+        const getSingleRegStudent = await Students.find(data)
+        res.json(getSingleRegStudent)
+    }
+    catch (err){
+        message: err
+    }
+}
+
 //add a student data
 exports.addStudent = async(req, res) => {
     const data = new Students({

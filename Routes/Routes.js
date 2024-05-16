@@ -3,7 +3,7 @@ const router = express.Router()
 
 const { getAllSubjects, saveSubject, updateSubject, updateAllSubjects, deleteSubject } = require('../Controller/SubjectsControll')
 
-const { getAllStudents, checkSingleStudent, findStudent, getSingleStudent, addStudent, updateStudent, deleteStudent } = require('../Controller/StudentsControl')
+const { getAllStudents, checkSingleStudent, findStudent, getSingleStudent, getSingleRegStudent, addStudent, updateStudent, deleteStudent } = require('../Controller/StudentsControl')
 
 const { getAllAdmin, searchAdmin, loginAdmin, signupAdmin, updateAdmin, deleteAdmin } = require('../Controller/AdminControl')
 
@@ -18,6 +18,7 @@ router.get('/students', getAllStudents) //get all students data
 router.post('/check-student', checkSingleStudent) // check a single student data
 router.post('/find-student', findStudent) // find student data using any field
 router.post('/single-student', getSingleStudent) // get a single student data
+router.post('/single-student-find/:registration_no', getSingleRegStudent) // get a single student data suing registration number
 router.post('/add-student', addStudent) // add a student data
 router.patch('/update-student/:postId', updateStudent) //update a student data
 router.delete('/delete-student/:postId', deleteStudent) // delete a students data
