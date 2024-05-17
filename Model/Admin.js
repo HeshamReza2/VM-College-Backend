@@ -6,7 +6,7 @@ const Admin = new mongoose.Schema({
     name: { type: String },
     type: {
         type: String,
-        default: 'admin'
+        default: 'Admin'
     },
     access: {
         type: Boolean,

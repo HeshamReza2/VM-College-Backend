@@ -25,6 +25,21 @@ exports.searchAdmin = async(req, res) => {
     }
 }
 
+//search admin using any value
+exports.searchAnyAdmin = async(req, res) => {
+    const data = {
+        field: req.body.field,
+        value: req.body.value
+    }
+    try {
+        const searchAnyAdmin = await Admin.findOne({ [data.field]: data.value })
+        res.json(searchAnyAdmin)
+    }
+    catch (err){
+        message: err
+    }
+}
+
 //login admin
 exports.loginAdmin = async(req, res) => {
     const data = {
@@ -58,7 +73,7 @@ exports.signupAdmin = async(req, res) => {
         type: req.body.type,
         access: req.body.access,
         email: req.body.email,
-        number: req.body.number
+        mobile: req.body.mobile
     }
 
     const hashedPassword = await bcrypt.hash(data.password, 10)
@@ -66,11 +81,11 @@ exports.signupAdmin = async(req, res) => {
     const signupAdmin = new Admin({
         username: data.username,
         password: hashedPassword,
-        name: req.body.name,
-        type: req.body.type,
-        access: req.body.access,
-        email: req.body.email,
-        number: req.body.number
+        name: data.name,
+        type: data.type,
+        access: data.access,
+        email: data.email,
+        mobile: data.mobile
     })
 
     try {
@@ -84,17 +99,29 @@ exports.signupAdmin = async(req, res) => {
 
 //update an admin
 exports.updateAdmin = async(req, res) => {
+
+    const data = {
+        username: req.body.username,
+        password: req.body.password,
+        name: req.body.name,
+        type: req.body.type,
+        access: req.body.access,
+        email: req.body.email,
+        mobile: req.body.mobile
+    }
+
+    const hashedPassword = await bcrypt.hash(data.password, 10)
     try {
         const data = await Admin.updateOne(
             { _id: req.params.postId },
             { $set: {
                 username: data.username,
                 password: hashedPassword,
-                name: req.body.name,
-                type: req.body.type,
-                access: req.body.access,
-                email: req.body.email,
-                number: req.body.number
+                name: data.name,
+                type: data.type,
+                access: data.access,
+                email: data.email,
+                mobile: data.mobile
             }}
         )
         res.json(data)

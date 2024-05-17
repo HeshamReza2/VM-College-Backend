@@ -5,7 +5,7 @@ const { getAllSubjects, saveSubject, updateSubject, updateAllSubjects, deleteSub
 
 const { getAllStudents, checkSingleStudent, findStudent, getSingleStudent, getSingleRegStudent, addStudent, updateStudent, deleteStudent } = require('../Controller/StudentsControl')
 
-const { getAllAdmin, searchAdmin, loginAdmin, signupAdmin, updateAdmin, deleteAdmin } = require('../Controller/AdminControl')
+const { getAllAdmin, searchAdmin, searchAnyAdmin, loginAdmin, signupAdmin, updateAdmin, deleteAdmin } = require('../Controller/AdminControl')
 
 const { getAllOpenclose, saveOpenclose, updateOpenclose, deleteOpenclose } = require('../Controller/OpencloseControl')
 
@@ -36,11 +36,11 @@ router.delete('/delete-subject/:postId', deleteSubject) //delete a subject from 
 //admin routes
 router.get('/admin/all', getAllAdmin) //get all admin data
 router.post('/admin/search', searchAdmin) //admin search route
+router.post('/admin/search-by', searchAnyAdmin) //admin search route
 router.post('/admin/login', loginAdmin) //admin login route
 router.post('/admin/signup', signupAdmin) //admin signup route
 router.patch('/admin/update/:postId', updateAdmin) //update an admin data
 router.delete('/admin/delete/:postId', deleteAdmin) //delete an admin data
-
 
 //open close routes
 router.get('/openclose', getAllOpenclose) //get all openclose list
