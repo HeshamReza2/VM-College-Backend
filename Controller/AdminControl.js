@@ -79,13 +79,13 @@ exports.signupAdmin = async(req, res) => {
     const hashedPassword = await bcrypt.hash(data.password, 10)
 
     const signupAdmin = new Admin({
-        username: data.username,
+        username: req.body.username,
         password: hashedPassword,
-        name: data.name,
-        type: data.type,
-        access: data.access,
-        email: data.email,
-        mobile: data.mobile
+        name: req.body.name,
+        type: req.body.type,
+        access: req.body.access,
+        email: req.body.email,
+        mobile: req.body.mobile
     })
 
     try {
@@ -102,21 +102,17 @@ exports.updateAdmin = async(req, res) => {
 
     const data = {
         username: req.body.username,
-        password: req.body.password,
         name: req.body.name,
         type: req.body.type,
         access: req.body.access,
         email: req.body.email,
         mobile: req.body.mobile
     }
-
-    const hashedPassword = await bcrypt.hash(data.password, 10)
     try {
-        const data = await Admin.updateOne(
+        const updateAdmin = await Admin.updateOne(
             { _id: req.params.postId },
             { $set: {
                 username: data.username,
-                password: hashedPassword,
                 name: data.name,
                 type: data.type,
                 access: data.access,
@@ -124,7 +120,27 @@ exports.updateAdmin = async(req, res) => {
                 mobile: data.mobile
             }}
         )
-        res.json(data)
+        res.json(updateAdmin)
+    }
+    catch (err){
+        message: err
+    }
+}
+
+//update admin password
+exports.updateAdminPassword = async(req, res) => {
+
+    const password = req.body.password
+
+    const hashedPassword = await bcrypt.hash(password, 10)
+    try {
+        const updateAdmin = await Admin.updateOne(
+            { _id: req.params.postId },
+            { $set: {
+                password: hashedPassword
+            }}
+        )
+        res.json(updateAdmin)
     }
     catch (err){
         message: err

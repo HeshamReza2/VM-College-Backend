@@ -3,9 +3,9 @@ const router = express.Router()
 
 const { getAllSubjects, saveSubject, updateSubject, updateAllSubjects, deleteSubject } = require('../Controller/SubjectsControll')
 
-const { getAllStudents, checkSingleStudent, findStudent, getSingleStudent, getSingleRegStudent, addStudent, updateStudent, deleteStudent } = require('../Controller/StudentsControl')
+const { getAllStudents, checkSingleStudent, findStudent, getSingleStudent, getSingleRegStudent, addStudent, addMultipleStudents, updateStudent, deleteStudent } = require('../Controller/StudentsControl')
 
-const { getAllAdmin, searchAdmin, searchAnyAdmin, loginAdmin, signupAdmin, updateAdmin, deleteAdmin } = require('../Controller/AdminControl')
+const { getAllAdmin, searchAdmin, searchAnyAdmin, loginAdmin, signupAdmin, updateAdmin, updateAdminPassword, deleteAdmin } = require('../Controller/AdminControl')
 
 const { getAllOpenclose, saveOpenclose, updateOpenclose, deleteOpenclose } = require('../Controller/OpencloseControl')
 
@@ -20,6 +20,7 @@ router.post('/find-student', findStudent) // find student data using any field
 router.post('/single-student', getSingleStudent) // get a single student data
 router.post('/single-student-find/:registration_no', getSingleRegStudent) // get a single student data suing registration number
 router.post('/add-student', addStudent) // add a student data
+router.post('/add-multiple-students', addMultipleStudents) // add a student data
 router.patch('/update-student/:postId', updateStudent) //update a student data
 router.delete('/delete-student/:postId', deleteStudent) // delete a students data
 
@@ -40,6 +41,7 @@ router.post('/admin/search-by', searchAnyAdmin) //admin search route
 router.post('/admin/login', loginAdmin) //admin login route
 router.post('/admin/signup', signupAdmin) //admin signup route
 router.patch('/admin/update/:postId', updateAdmin) //update an admin data
+router.patch('/admin/update-password/:postId', updateAdminPassword) //update an admin password
 router.delete('/admin/delete/:postId', deleteAdmin) //delete an admin data
 
 //open close routes
