@@ -132,13 +132,9 @@ exports.addMultipleStudents = async(req, res) => {
     const data = req.body.data
     const options = { ordered: true }
     try {
-        const addMultipleStudents = await Students.insert([
-            {"name": "a"},
-            {"name": "b"},
-            {"name": "c"},
-            {"name": "d"}
-        ], {ordered: false})
+        const addMultipleStudents = await Students.insertMany(data, {ordered: false})
         res.json(addMultipleStudents);
+        //res.json(data)
     }
     catch(err){
         message: err
