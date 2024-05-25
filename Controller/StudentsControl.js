@@ -3,8 +3,8 @@ const Students = require('../Model/Students')
 //get all students data
 exports.getAllStudents = async(req, res) => {
     const data = {
-        limitValue: req.body.limitValue,
-        skipValue: req.body.skipValue
+        limitValue: req.params.limitValue,
+        skipValue: req.params.skipValue
     }
     try {
         const getAllStudents = await Students.find().limit(data.limitValue).skip(data.skipValue)

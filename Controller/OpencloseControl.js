@@ -18,7 +18,8 @@ exports.saveOpenclose = async(req, res) => {
         type: req.body.type,
         programme: req.body.programme,
         semester: req.body.semester,
-        status: req.body.status
+        status: req.body.status,
+        date: req.body.date
     })
     try {
         const saveOpenclose = await data.save()
@@ -39,7 +40,8 @@ exports.updateOpenclose = async(req, res) => {
                     type: req.body.type,
                     programme: req.body.programme,
                     semester: req.body.semester,
-                    status: req.body.status
+                    status: req.body.status,
+                    date: req.body.date
                 }
             }
         )
